@@ -1,9 +1,4 @@
-models/
 __pycache__/
-data/
-macaw/.ipynb_checkpoints
-notebooks/.ipynb_checkpoints
-notebooks/2D/.ipynb_checkpoints
-notebooks/3D/.ipynb_checkpoints
-notebooks/Tests/.ipynb_checkpoints
+.ipynb_checkpoints
 jobs.txt
+.idea/

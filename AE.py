@@ -1,9 +1,7 @@
 import numpy as np
 import torch
-import torch.distributions as td
 from decoder import Decoder
 from encoder import Encoder
-from macaw.flows import Flow, NormalizingFlowModel
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import StandardScaler
 
@@ -19,12 +17,12 @@ class AE:
         self.encoder = Encoder(encoded_dim=encoded_dim).to(self.device)
         self.decoder = Decoder(encoded_dim=encoded_dim).to(self.device)
 
-    def train(self, train_loader):
+    def train(self, train_loader, lr=0.0005, weight_decay=1e-06):
         self.encoder.train()
         self.decoder.train()
 
         params = [{'params': self.encoder.parameters()}, {'params': self.decoder.parameters()}]
-        optimizer = torch.optim.Adam(params, lr=0.0005, weight_decay=1e-06)
+        optimizer = torch.optim.Adam(params, lr=lr, weight_decay=weight_decay)
         loss_func = torch.nn.MSELoss()
 
         train_loss = []
